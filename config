@@ -1,6 +1,9 @@
 
 # i3 config file (v4)
-#
+exec /usr/bin/gnome-settings-daemon
+exec /usr/bin/xautolock -time 10 -locker "i3lock -c 720a2a -i ~/.i3/lock_screen.png"
+exec /usr/bin/dropbox start -i
+exec /home/scottp/bin/wallpaper.sh
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
@@ -24,7 +27,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec j4-dmenu-desktop
+bindsym $mod+d exec i3-dmenu-desktop
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -61,10 +64,10 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # split vertical and open new terminal
-bindsym $mod+bar split vertical; exec i3-sensible-terminal; split
+bindsym $mod+minus split vertical; exec i3-sensible-terminal; split
 
 # split horizontal and open new terminal
-bindsym $mod+minus split horizontal; exec i3-sensible-terminal
+bindsym $mod+bar split horizontal; exec i3-sensible-terminal
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -102,13 +105,23 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 mt you can enter ove container to workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container toedo you have a developerSS coupon to change it to free shipping, but  workspace 7
+bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+b workspace back_and_forth
+bindsym XF86Launch5 workspace 1
+bindsym XF86Launch6 workspace 2
+bindsym XF86Launch7 workspace 3
+bindsym XF86Launch8 workspace 4
+bindsym XF86Launch9 workspace 5
+
+bindsym $mod+Ctrl+Left move container to output HDMI1
+bindsym $mod+Ctrl+Right move container to output HDMI2
 
 # allow workspace  back and forth
 #workspace_auto_back_s
@@ -154,7 +167,7 @@ bar {
   id bar-left
   position top
   output HDMI1
-  status_command i3status
+  status_command $HOME/bin/conky-i3bar
   tray_output primary
 }
 bar {
